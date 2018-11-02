@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+{% endblock %}
+
+{% block main %}
+    <ul class="question">
+        {% for item in question %}
+        <li>
+            <div class="avatar-group">
+                <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="" class="avatar">
+            </div>
+            <div class="question-group">
+                <p class="question-title">
+                    <a href="{{ url_for('detail', question_id=item.id) }}">{{ item.title }}</a>
+                </p>
+                <p class="question -content">
+                    {{ item.content }}
+                </p>
+                <div class="question-info">
+                    <span class="question-author">{{ item.author.username }}</span>
+                    <span class="question-time">{{ item.create_time }}</span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

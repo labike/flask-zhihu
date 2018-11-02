@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}detail{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h3 class="page-title">{{ question_model.title }}</h3>
+    <p class="question-info">
+        <span>author: {{ question_model.author.username }}</span>
+        <span>time: {{ question_model.create_time }}</span>
+    </p>
+    <hr>
+    <p class="question-content">
+        {{ question_model.content }}
+    </p>
+    <hr>
+    <div class="comments">
+        <p>Comments: <span>(4)</span></p>
+        <form action="{{ url_for('comment') }}" method="POST">
+            <div class="form-group">
+                <input type="text" name="comment" class="form-control" placeholder="comment"/>
+                <input type="hidden" name="question_id" value="{{ question_model.id }}"/>
+            </div>
+            <div class="form-group comment-sub">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        <ul class="comments-detail">
+            {% for comment_item in question_model.comments_all %}
+            <li>
+                <div class="comments-info">
+                    <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="">
+                    <span class="comments-name">{{ comment_item.author.username }}</span>
+                    <span class="comments-time">{{ comment_item.create_time }}</span>
+                </div>
+                <p class="comments-text">{{ comment_item.comment_content }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
