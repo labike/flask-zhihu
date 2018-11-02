@@ -1,5 +1,5 @@
 # flask-zhihu
-python flask build question website 
+python flask build question website, and the project Suitable learning python flask
 
 ![show](https://github.com/labike/flask-zhihu/blob/master/flask.gif)
 
@@ -7,7 +7,7 @@ python flask build question website
 
 * git clone <repo>
   
-* pip install
+* pip install flask flask-migrate flask-script flask-SQLAlchemy pymysql
   
 * python3 manage.py run server
   
